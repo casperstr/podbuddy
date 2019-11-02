@@ -8,30 +8,39 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    @State private var selection = 0
- 
+
+
+
+struct PodcastSearch: View {
+     @ObservedObject var networkingManager = NetworkManager()
     var body: some View {
-        TabView(selection: $selection){
-            Text("First View")
-                .font(.title)
-                .tabItem {
-                    VStack {
-                        Image("first")
-                        Text("First")
-                    }
-                }
-                .tag(0)
-            Text("Second View")
-                .font(.title)
-                .tabItem {
-                    VStack {
-                        Image("second")
-                        Text("Second")
-                    }
-                }
-                .tag(1)
-        }
+               VStack{
+                   TextField("Query", text: $networkingManager.query)
+                   List(networkingManager.searchResults.results,id: \.collectionId) {
+                                   item in
+                                            PodcastItem(item: item)
+                                    }
+               }
+               
+
+          
+       }
+
+    
+}
+
+struct ContentView: View {
+    
+   
+    @State var selection = 0
+    var body: some View {
+            TabView(selection: $selection){
+                PodcastSearch().tabItem { Text("Search") }
+                PodcastLibrary().tabItem { Text("Library") }
+            }
+            
+
+       
     }
 }
 
