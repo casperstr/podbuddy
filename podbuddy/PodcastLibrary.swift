@@ -7,31 +7,32 @@
 //
 
 import Foundation
-import MediaPlayer
 import SwiftUI
+import CoreData
 
 struct PodcastLibrary : View {
-    
-
-    
-    init(){
-        MPMediaLibrary.requestAuthorization{_ in
-            print("TJENA")
-            guard let pods = MPMediaQuery.podcasts().items else { return }
-                   for pod in pods {
-                       print(pod.albumArtist)
-                   }
-        }
-       
-           
-    }
-    
+    @FetchRequest(
+        entity: PodcastChannel.entity(),
+        sortDescriptors: [NSSortDescriptor(keyPath: \PodcastChannel.name, ascending: true)]
+    ) var podcasts: FetchedResults<PodcastChannel>
    
     var body: some View {
-        Text("Podder")
+        HStack {
+            List(podcasts, id: \.feedUrl) { podcast in
+                Text(podcast.name ?? "")
+            }
+            Text("Whattup")
+        }
+        
     }
 }
 
 
 
+
+struct PodcastLibrary_Previews: PreviewProvider {
+    static var previews: some View {
+       PodcastLibrary()
+    }
+}
 

@@ -17,5 +17,6 @@ struct ItunesSearchAPIEntry : Decodable {
     var collectionId: Int
     var artistName: String
     var trackName: String
+    var feedUrl: String
     var artworkUrl600: String
 }

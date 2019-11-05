@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15400" systemVersion="19A602" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="1.0.3">
+    <entity name="PodcastChannel" representedClassName=".PodcastChannel" syncable="YES" codeGenerationType="class">
+        <attribute name="cover" optional="YES" attributeType="Binary"/>
+        <attribute name="feedUrl" attributeType="URI"/>
+        <attribute name="name" attributeType="String" spotlightIndexingEnabled="YES"/>
+        <relationship name="episodes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PodcastEpisode" inverseName="channel" inverseEntity="PodcastEpisode"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="feedUrl"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="PodcastEpisode" representedClassName="PodcastEpisode" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="soundUrl" optional="YES" attributeType="URI"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="channel" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PodcastChannel" inverseName="episodes" inverseEntity="PodcastChannel"/>
+    </entity>
+    <elements>
+        <element name="PodcastChannel" positionX="-574.15234375" positionY="-33.48828125" width="128" height="103"/>
+        <element name="PodcastEpisode" positionX="-163.71484375" positionY="-33.65234375" width="128" height="103"/>
+    </elements>
+</model>

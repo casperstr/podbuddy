@@ -8,16 +8,21 @@
 
 import Foundation
 import SwiftUI
+import FeedKit
 
 
 struct PodcastItem: View {
     var item: ItunesSearchAPIEntry
     @ObservedObject var image: RemoteImage
+    @ObservedObject var feedManager: FeedManager
+    @Environment(\.managedObjectContext) var managedObjectContext
     
     init(item: ItunesSearchAPIEntry) {
         self.item = item
         image = RemoteImage(imageUrl: item.artworkUrl600)
+        feedManager = FeedManager()
     }
+ 
     
     var body: some View {
         HStack(alignment: .top){
@@ -36,17 +41,14 @@ struct PodcastItem: View {
                 
                 
         }
-        .padding(.horizontal)
+        .padding(.horizontal).onTapGesture {
+            guard let feedUrl = URL(string: self.item.feedUrl) else { return }
+            self.feedManager.addChannel(feedUrl: feedUrl)
+            
+        }
         
     }
     
     
-}
-
-
-struct PodcastItem_Previews: PreviewProvider {
-    static var previews: some View {
-        PodcastItem(item: ItunesSearchAPIEntry(collectionId: 123, artistName: "Casper", trackName: "Strömberg", artworkUrl600: "https://is1-ssl.mzstatic.com/image/thumb/Podcasts113/v4/d4/41/a2/d441a2a0-4880-4840-9d8d-152e9b2b691e/mza_10005288361658681705.jpg/600x600bb.jpg"))
-    }
 }
 
