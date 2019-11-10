@@ -15,7 +15,11 @@ struct PodcastSearch: View {
      @ObservedObject var networkingManager = NetworkManager()
     var body: some View {
         VStack{
-            TextField("Query", text: $networkingManager.query)
+            HStack{
+                TextField("Query", text: $networkingManager.query)
+                ActivityIndicator(isAnimating: self.networkingManager.isLoading, style: UIActivityIndicatorView.Style.medium)
+            }.padding()
+            
             List(networkingManager.searchResults.results,id: \.collectionId) { item in
                 PodcastItem(item: item)
             }

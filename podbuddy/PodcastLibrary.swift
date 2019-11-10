@@ -17,12 +17,9 @@ struct PodcastLibrary : View {
     ) var podcasts: FetchedResults<PodcastChannel>
    
     var body: some View {
-        HStack {
             List(podcasts, id: \.feedUrl) { podcast in
                 Text(podcast.name ?? "")
             }
-            Text("Whattup")
-        }
         
     }
 }

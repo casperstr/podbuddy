@@ -12,8 +12,18 @@ import Combine
 
 final class NetworkManager : ObservableObject {
     let objectWillChange = PassthroughSubject<NetworkManager, Never>()
-        
-
+    
+    var isLoading: Bool {
+        get{
+            self.currentRequest != nil
+        }
+    }
+ 
+   private var currentRequest: URLSessionDataTask?{
+        didSet {
+            objectWillChange.send(self)
+        }
+    }
     
     var searchResults = ITunesSearchAPIList(results: []){
         willSet {
@@ -28,16 +38,32 @@ final class NetworkManager : ObservableObject {
     }
         
     func searchItems(searchQuery: String) {
-        guard let url = URL(string: "https://itunes.apple.com/search?term=" + searchQuery + "&country=SE&media=podcast&entity=podcast") else { return }
         
-        URLSession.shared.dataTask(with: url) { (data, _, _) in
+        guard let url = URL(string: "https://itunes.apple.com/search?term=" + searchQuery + "&country=SE&media=podcast&entity=podcast") else { return }
+   
+        self.currentRequest?.cancel()
+   
+        let request = URLSession.shared.dataTask(with: url) { (data, _, _) in
             guard let data = data else {return }
-            let searchResults = try! JSONDecoder().decode(ITunesSearchAPIList.self, from: data)
-            DispatchQueue.main.async {
-                self.searchResults = searchResults
+            let searchResults = try? JSONDecoder().decode(ITunesSearchAPIList.self, from: data)
+            
+            if let searchResults = searchResults {
+                DispatchQueue.main.async {
+                    self.searchResults = searchResults
+                    self.currentRequest = nil
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.searchResults = ITunesSearchAPIList(results: [ItunesSearchAPIEntry]())
+                    self.currentRequest = nil
+                }
             }
             
-        }.resume()
+        }
+        self.currentRequest = request;
+        request.resume();
+       
+    
     }
     
     

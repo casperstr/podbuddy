@@ -28,20 +28,27 @@ struct PodcastItem: View {
         HStack(alignment: .top){
             VStack(alignment: .leading){
                 Text(item.artistName)
+                    .font(.system(.subheadline))
                 Text(item.trackName)
+                    .lineLimit(2).font(.system(.headline)).padding(.trailing)
                
             }
             Spacer()
-            Image(uiImage: (image.data.isEmpty) ? UIImage() : UIImage(data: image.data)!)
+            Image(uiImage: (image.data.isEmpty) ? UIImage(imageLiteralResourceName: "Unknown.png") : UIImage(data: image.data)!)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .padding(.trailing)
-                .clipShape(Circle())
                 .frame(width: 100, height: 100)
+                .clipShape( RoundedRectangle(cornerRadius: 5))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 5)
+                        .stroke(Color.gray, lineWidth: 1)
+                )
+               
+                
                 
                 
         }
-        .padding(.horizontal).onTapGesture {
+        .padding().onTapGesture {
             guard let feedUrl = URL(string: self.item.feedUrl) else { return }
             self.feedManager.addChannel(feedUrl: feedUrl)
             
@@ -52,3 +59,9 @@ struct PodcastItem: View {
     
 }
 
+
+struct PodcastItem_Previews: PreviewProvider {
+    static var previews: some View {
+        PodcastItem(item: ItunesSearchAPIEntry(collectionId: 1, artistName: "Sveriges Radio", trackName: "Vredens konflikt en serie i tre delar om saker", feedUrl: "https://google.se", artworkUrl600: "https://www.hackingwithswift.com/img/home-find-answers@2x.jpg"))
+    }
+}

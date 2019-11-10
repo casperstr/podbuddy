@@ -22,6 +22,8 @@
 		AF799BD823701A12008A63AF /* Model.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = AF799BD723701A12008A63AF /* Model.xcdatamodel */; };
 		AF799BDA23701CA0008A63AF /* FeedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF799BD923701CA0008A63AF /* FeedManager.swift */; };
 		AF8B597C236F375700954715 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF8B597B236F375700954715 /* CoreData.framework */; };
+		AF9501C4237864190016D628 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9501C3237864190016D628 /* ActivityIndicator.swift */; };
+		AF9501C623786C860016D628 /* Unknown.png in Resources */ = {isa = PBXBuildFile; fileRef = AF9501C523786C860016D628 /* Unknown.png */; };
 		AFB71978236B340900D3E778 /* PodcastLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB71977236B340900D3E778 /* PodcastLibrary.swift */; };
 		AFB7197A236B465C00D3E778 /* PodcastItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB71979236B465C00D3E778 /* PodcastItem.swift */; };
 /* End PBXBuildFile section */
@@ -64,6 +66,8 @@
 		AF799BD723701A12008A63AF /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		AF799BD923701CA0008A63AF /* FeedManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedManager.swift; sourceTree = "<group>"; };
 		AF8B597B236F375700954715 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = DEVELOPER_DIR; };
+		AF9501C3237864190016D628 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		AF9501C523786C860016D628 /* Unknown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Unknown.png; sourceTree = "<group>"; };
 		AFB71976236B321A00D3E778 /* podbuddy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = podbuddy.entitlements; sourceTree = "<group>"; };
 		AFB71977236B340900D3E778 /* PodcastLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastLibrary.swift; sourceTree = "<group>"; };
 		AFB71979236B465C00D3E778 /* PodcastItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastItem.swift; sourceTree = "<group>"; };
@@ -128,8 +132,10 @@
 				AF4D6CBB236AD769001F5CFF /* AppDelegate.swift */,
 				AF4D6CBD236AD769001F5CFF /* SceneDelegate.swift */,
 				AF4D6CBF236AD769001F5CFF /* ContentView.swift */,
+				AF9501C3237864190016D628 /* ActivityIndicator.swift */,
 				AFB71979236B465C00D3E778 /* PodcastItem.swift */,
 				AF799BD723701A12008A63AF /* Model.xcdatamodel */,
+				AF9501C523786C860016D628 /* Unknown.png */,
 				AFB71977236B340900D3E778 /* PodcastLibrary.swift */,
 				AF4D6CC1236AD76E001F5CFF /* Assets.xcassets */,
 				AF4D6CC6236AD76E001F5CFF /* LaunchScreen.storyboard */,
@@ -288,6 +294,7 @@
 			files = (
 				AF4D6CC8236AD76E001F5CFF /* LaunchScreen.storyboard in Resources */,
 				AF4D6CC5236AD76E001F5CFF /* Preview Assets.xcassets in Resources */,
+				AF9501C623786C860016D628 /* Unknown.png in Resources */,
 				AF4D6CC2236AD76E001F5CFF /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -318,6 +325,7 @@
 				AFB7197A236B465C00D3E778 /* PodcastItem.swift in Sources */,
 				AF4D6CBC236AD769001F5CFF /* AppDelegate.swift in Sources */,
 				AF799BDA23701CA0008A63AF /* FeedManager.swift in Sources */,
+				AF9501C4237864190016D628 /* ActivityIndicator.swift in Sources */,
 				AF4D6CEE236ADA51001F5CFF /* NetworkManager.swift in Sources */,
 				AF4D6CF0236AE555001F5CFF /* RemoteImage.swift in Sources */,
 				AF4D6CBE236AD769001F5CFF /* SceneDelegate.swift in Sources */,
